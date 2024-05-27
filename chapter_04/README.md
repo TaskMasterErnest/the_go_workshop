@@ -193,7 +193,7 @@
     - this looks like this **`<value> := <value>.(<type>)`** or **`<value>, ok := <value>.(<type>)`**. If ypue leave the boolean out, the type assertion fails and Go raises a panic.
     - a combinaion of interface{} and type assertions allow you to overcome Go's strict type coctrols, in turn allowing you to create functions that can work with any type of variable. You lose the protection that Go gives you at compile time for type safety
 
-    #### Typw Switch
+    #### Type Switch
     - if we wanted to expand the doubler function we write in `exercise21` to include all int types, we would end up with a lot of duplicated logic.
     - Go has a way of dealing with more complex type assertion situations, known as the **type switch**.
     - here is the notation:
