@@ -189,9 +189,9 @@
     - interfaces do not describe fields and they do not describe a type's core value (such as a string or number).
     - all types in Go conform to **interface{}** or in this case **any**.
     - the notation for type assertion is **`<value>.(<type>)`**.
-    - type assertion results in a valut of the type that was requested and optionally a bool regarding whether it was successful or not.
-    - this looks like this **`<value> := <value>.(<type>)`** or **`<value>, ok := <value>.(<type>)`**. If ypue leave the boolean out, the type assertion fails and Go raises a panic.
-    - a combinaion of interface{} and type assertions allow you to overcome Go's strict type coctrols, in turn allowing you to create functions that can work with any type of variable. You lose the protection that Go gives you at compile time for type safety
+    - type assertion results in a value of the type that was requested and optionally a bool regarding whether it was successful or not.
+    - this looks like this **`<value> := <value>.(<type>)`** or **`<value>, ok := <value>.(<type>)`**. If you leave the boolean out, the type assertion fails and Go raises a panic.
+    - a combinaion of interface{} and type assertions allow you to overcome Go's strict type controls, in turn allowing you to create functions that can work with any type of variable. You lose the protection that Go gives you at compile time for type safety
 
     #### Type Switch
     - if we wanted to expand the doubler function we write in `exercise21` to include all int types, we would end up with a lot of duplicated logic.
