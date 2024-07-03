@@ -12,6 +12,7 @@ package main
 import (
 	"errors"
 	"fmt"
+	"os"
 )
 
 type Employee struct {
@@ -107,6 +108,12 @@ func main() {
 	employeeReview["Dependability"] = "Fair"
 
 	d := Developer{Individual: Employee{ID: "d-137", FirstName: "Anthon", LastName: "Joggins"}, HourlyRate: 45.0, HoursWorkedInYear: 2080.0, Review: employeeReview}
+
+	err := d.ReviewRating()
+	if err != nil {
+		fmt.Println(err)
+		os.Exit(1)
+	}
 
 	payDetails(d)
 }
