@@ -60,7 +60,7 @@ func matchBudgetCategories(value string) (budgetCategory, error) {
 	case "retirement":
 		return retirement, nil
 	default:
-		return "", ErrBudgetCategoryNotFound
+			return "", ErrBudgetCategoryNotFound
 	}
 }
 

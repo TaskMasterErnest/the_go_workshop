@@ -119,7 +119,7 @@ func main() {
 - Support for handling signals is built into the Go standard library, in the **os/signal** package.
   - this package allows to make the programs more resilient.
 - The first thing to do when handling signals in Go is to **trap** or catch the signal we are interested in.
-  - this is done by using the **Notify()** function. The fomat of the function is as follows:
+  - this is done by using the **Notify()** function. The format of the function is as follows:
   ```go
   func Notify(c chan <- os.Signal, sig ...os.Signal)
   ```
@@ -141,7 +141,7 @@ func main() {
   sigs := make(chan os.Signal, 1)
   // the done channel is used to let us know when the program exits
   done := make(chan bool)
-  // the signal.Notify method will receive noification from the sigs channel, notifs of the syscall.SIGINT type
+  // the signal.Notify method will receive notification from the sigs channel, notifs of the syscall.SIGINT type
   signal.Notify(sigs, syscall.SIGINT)
   // create an anonymous goroutine function that blocks until the required signal is received
   go func() {
