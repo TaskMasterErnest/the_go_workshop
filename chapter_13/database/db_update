@@ -1,0 +1,44 @@
+
+
+import (
+	"database/sql"
+	"fmt"
+
+	_ "github.com/lib/pq"
+)
+
+func main() {
+	db, err := sql.Open("postgres", "user=taskmaster password=4@strongpassword host=0.0.0.0 port=5432 dbname=postgres sslmode=disable")
+	if err != nil {
+		panic(err)
+	} else {
+		fmt.Println("The connection to the database has been successfully initialized!")
+	}
+
+	err = db.Ping()
+	if err != nil {
+		panic(err)
+	} else {
+		fmt.Println("Good to go!")
+	}
+
+	UpdateStatement := `
+	UPDATE Number
+	SET number = $1
+	WHERE property = $2
+	`
+
+	updateResult, err := db.Exec(UpdateStatement, "odd", 103)
+	if err != nil {
+		panic(err)
+	}
+
+	updatedRecords, err := updateResult.RowsAffected()
+	if err != nil {
+		panic(err)
+	}
+
+	fmt.Println("Number of records updated:", updatedRecords)
+
+	db.Close()
+}

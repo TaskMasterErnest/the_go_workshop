@@ -1,0 +1,50 @@
+
+import (
+	"database/sql"
+	"fmt"
+
+	_ "github.com/lib/pq"
+)
+
+func main() {
+	var number int
+	var property string
+
+	db, err := sql.Open("postgres", "user=taskmaster password=4@strongpassword host=0.0.0.0 port=5432 dbname=postgres sslmode=disable")
+	if err != nil {
+		panic(err)
+	} else {
+		fmt.Println("The connection to the database has been successfully initialized.")
+	}
+
+	err = db.Ping()
+	if err != nil {
+		panic(err)
+	} else {
+		fmt.Println("Good to go!")
+	}
+
+	rows, err := db.Query("SELECT * FROM Number")
+	if err := nil {
+		panic(err)
+	}
+
+	// we use the Next() methods to iterate over the rows we have
+	for rows.Next() {
+		// assign the results of the query to the values
+		err := rows.Scan(&number, &property)
+		if err != nil {
+			panic(err)
+		}
+		fmt.Println(number, property)
+	}
+
+	err = rows.Err()
+	if err != nil {
+		panic(err)
+	}
+
+	rows.Close()
+
+	db.Close()
+}
