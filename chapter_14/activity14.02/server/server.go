@@ -3,6 +3,7 @@ package main
 import (
 	"encoding/json"
 	"fmt"
+	"io"
 	"log"
 	"net/http"
 	"os"
@@ -10,7 +11,6 @@ import (
 
 var (
 	filename = "data.json"
-	data     = nameData{Names: []string{}}
 )
 
 type nameData struct {
@@ -45,11 +45,18 @@ func (srv server) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 		}
 
 	case http.MethodGet:
-		nameBytes, err := json.Marshal(data)
+		file, err := os.Open(filename)
 		if err != nil {
 			log.Fatal(err)
 		}
-		w.Write(nameBytes)
+		defer file.Close()
+
+		data, err := io.ReadAll(file)
+		if err != nil {
+			log.Fatal(err)
+		}
+
+		w.Write(data)
 
 	default:
 		http.Error(w, "Method Not Allowed", http.StatusMethodNotAllowed)
