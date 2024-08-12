@@ -53,7 +53,7 @@ func getDataAndParseResponse(url string) ([]string, error) {
 }
 
 func main() {
-	putName := postName{Names: []string{"Ernest", "Clinton", "Gloria", "Bernice"}}
+	putName := postName{Names: []string{"Taskmaster", "Jackson", "Allen", "Paul"}}
 	addNameAndParseResponse("http://localhost:8000", putName)
 	fmt.Println("<<<------------------------------------------------------>>>")
 	data, err := getDataAndParseResponse("http://localhost:8000")
@@ -61,6 +61,6 @@ func main() {
 		log.Fatal(err)
 	}
 	for _, name := range data {
-		fmt.Println(name)
+		log.Println(name)
 	}
 }
